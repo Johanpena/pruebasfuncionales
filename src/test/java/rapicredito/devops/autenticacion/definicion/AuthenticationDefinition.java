@@ -1,11 +1,12 @@
-package rapicredito.devops.definitions;
+package rapicredito.devops.autenticacion.definicion;
 
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Steps;
-import rapicredito.devops.steps.AuthenticationSteps;
+import rapicredito.devops.autenticacion.steps.AuthenticationSteps;
+
 
 public class AuthenticationDefinition {
 

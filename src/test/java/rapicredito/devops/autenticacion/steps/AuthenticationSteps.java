@@ -1,12 +1,11 @@
-package rapicredito.devops.steps;
-
-import org.fluentlenium.core.annotation.Page;
+package rapicredito.devops.autenticacion.steps;
 
 import net.thucydides.core.annotations.Step;
+import org.fluentlenium.core.annotation.Page;
 import rapicredito.devops.pages.AutenticacionPage;
 import rapicredito.devops.pages.IndexPage;
 
-public class AuthenticationSteps{
+public class AuthenticationSteps {
 
 	@Page
     AutenticacionPage autenticacionPage;
