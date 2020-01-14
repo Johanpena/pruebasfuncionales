@@ -5,6 +5,7 @@ import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
 
 import org.junit.Assert;
+import org.mockito.internal.matchers.Equals;
 import org.openqa.selenium.WebDriver;
 
 import net.serenitybdd.core.annotations.findby.By;
@@ -18,8 +19,6 @@ public class AutenticacionPage extends PageObject{
 		super(webDriver);
 	}
 
-
-
 	@FindBy(id="password")
     WebElementFacade passwordField;
 
@@ -31,6 +30,9 @@ public class AutenticacionPage extends PageObject{
 
     @FindBy(xpath = "//*[@id=\"loginForm\"]/div/div[2]/div[2]/div[3]/div[1]/div[5]/div/button")
     WebElementFacade botonLogin;
+
+    @FindBy(id="error-msg")
+	WebElementFacade claseobejtomensje;
     
     public void validateIndex() {
 		soyClliente.click();
@@ -46,4 +48,17 @@ public class AutenticacionPage extends PageObject{
     public void login() {
        botonLogin.click();
     }
+
+	public void validarHomePage() {
+
+    	Assert.assertTrue(usernameField.isPresent());
+		Assert.assertTrue(passwordField.isPresent());
+	}
+
+	public void validarError(String error) {
+
+			Assert.assertEquals(claseobejtomensje.getValue(), error);
+
+
+	}
 }

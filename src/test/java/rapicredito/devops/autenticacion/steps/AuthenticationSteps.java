@@ -32,4 +32,12 @@ public class AuthenticationSteps {
     public void valiationProfile(String profile) {
     	indexPage.validateProfile(profile);
     }
+
+    public void validarMensaje() {
+        autenticacionPage.validarHomePage();
+    }
+
+    public void mensajeError(String error) {
+        autenticacionPage.validarError(error);
+    }
 }

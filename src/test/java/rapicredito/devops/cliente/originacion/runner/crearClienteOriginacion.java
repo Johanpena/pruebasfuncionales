@@ -8,9 +8,11 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"pretty"},
         features = "src/test/resources/rapicredito/devops/features/cliente/originacion/crearClienteOriginacion.feature",
-        glue={"rapicredito.devops.cliente.originacion.definicion.OriginacionDefinicion"}
+        glue={"rapicredito.devops"}
 )
-public class crearClienteOriginacion {
+public class crearClienteOriginacion
+  {
+
 }
 
 

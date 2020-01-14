@@ -11,8 +11,8 @@ Feature: creacion cliente
     # Combinations
 
    # El Background se utiliza cuando en diferentes escenarios se tienen las mismas precondiciones
-  Background: El usuario navega en la pagina de inicio de la aplicacion
-    Given me encuentro en la pagina de inicio
+    Background: El usuario navega en la pagina de inicio de la aplicacion
+    Given  me encuentro en la pagina de inicio
     Then valido que me encuentro en la pagina de registro
 
     # Pasos:
@@ -22,9 +22,10 @@ Feature: creacion cliente
       # And, But conectores
 
     # Se recomienda que cada escenario tenga de 3 a 5 pasos
-  Scenario Outline: registro credenciales
-    When ingreso las credenciales <nombre1> , <nombre2> , <apellido1>,<apellido2>,<tipo_documento> , <documento>, <correo> , <celular> , <contraseña> , confirmar_contras>
-    Then puedo ver el usuario creado <Informacion_basica>
+  Scenario Outline: Solicitud de credito - Cliente no registrado
+    When ingreso las credenciales para la prueba
+      |<nombre1>|<nombre2>|<apellido1>|<apellido2>|<tipo_documento>|<documento>|<correo>|<celular>|<password>|<password2>|<ciudad>|<direccion>|<tipo_vivienda>|<tiempo_vivienda>|<genero>|<fecha_naci>|<estado_civil>|<personas_cargo>|<numero_hijos>|<f_expedi>|<nivel_estu>|<estado_estudio>|
+    Then puedo ver que se ha creado la solicitud de credito de forma exitosa
 
 #	Scenario: autenticacion fallida
 #      When ingreso el nombre de "usuario"
@@ -34,6 +35,19 @@ Feature: creacion cliente
 #      	|hola2  |
 
     Examples:
-      |nombre1|nombre2|apellido1|apellido2|tipo_documento|documento|correo|celular|password|password2|
-      |juan|david|marin|lopez|0|879654422|juandm@yopmail.com|3785874788|12345|12345|
+      |nombre1|nombre2|apellido1|apellido2|tipo_documento|documento|correo|celular|password|password2|ciudad|direccion|tipo_vivienda|tiempo_vivienda|genero|fecha_naci|estado_civil|personas_cargo|numero_hijos|f_expedi|nivel_estu|estado_estudio|
+
+      |juan|david|marin|lopez|1|879654423|juandm@yopmail.com|3785874788|12345|12345|1|calle 33|2|3|1|30/08/1988|1|0|0|05/06/2006|5|1|
+
+
+
+
+  Scenario Outline: registro informacion_basica
+    When ingreso las credenciales para la prueba2
+      |<ciudad>|<direccion>|<tipo_vivienda>|<tiempo_vivienda>|<genero>|<fecha_naci>|<estado_civil>|<personas_cargo>|<numero_hijos>|<f_expedi>|<nivel_estu>|<estado_estudio>|
+    Then puedo ver el usuario creado <Referencia_Personal>
+
+    Examples:
+      |ciudad|direccion|tipo_vivienda|tiempo_vivienda|genero|fecha_naci|estado_civil|personas_cargo|numero_hijos|f_expedi|nivel_estu|estado_estudio|
+      |juan|david|marin|lopez|1|879654423|juandm@yopmail.com|3785874788|12345|12345|
 

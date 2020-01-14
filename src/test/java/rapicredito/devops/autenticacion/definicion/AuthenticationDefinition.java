@@ -17,7 +17,7 @@ public class AuthenticationDefinition {
     public void me_encuentro_en_la_pagina_de_inicio() throws Exception {
     	authenticationSteps.openPage();
     }
-
+    
     @Then("^debo encontrar la seccion para iniciar sesion$")
     public void debo_encontrar_la_seccion_para_iniciar_sesion() throws Exception {
         authenticationSteps.validationBackground();
@@ -34,4 +34,13 @@ public class AuthenticationDefinition {
     }
 
 
+    @Then("^retorno a la pagina de inicio$")
+    public void retornoALaPaginaDeInicio() {
+        authenticationSteps.validarMensaje();
+    }
+
+    @Then("^generar mensaje error <mensaje>(.*)$")
+    public void generarMensajeErrorMensaje(String error) {
+        authenticationSteps.mensajeError(error);
+    }
 }
