@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"pretty"},
         features = "src/test/resources/rapicredito/devops/features/autenticacion/authentication.feature",
-        glue={"rapicredito.devops.autenticacion.definicion"}
+        glue={"rapicredito.devops.autenticacion.definicion"},tags="@escenario1"
 )
 public class Authentication{
 }

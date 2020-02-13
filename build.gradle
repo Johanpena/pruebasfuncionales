@@ -6,13 +6,13 @@ group 'co.com.rapicredito'
 version '1.0-SNAPSHOT'
 
 repositories {
-    mavenLocal()
+    mavenCentral()
     jcenter()
 }
 
 buildscript {
     repositories {
-        mavenLocal()
+        mavenCentral()
         jcenter()
     }
     dependencies {
@@ -28,6 +28,6 @@ dependencies {
     testCompile('junit:junit:4.+')
     testCompile('org.assertj:assertj-core:3.11.1')
     testCompile('org.slf4j:slf4j-simple:1.7.25')
+    compile("mysql:mysql-connector-java:6.0.+")
 }
-
-gradle.startParameter.continueOnFailure = true
+    gradle.startParameter.continueOnFailure = true

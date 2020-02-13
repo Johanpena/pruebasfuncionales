@@ -16,6 +16,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 public class AutenticacionPage extends PageObject{
 	
 	public  AutenticacionPage(WebDriver webDriver) {
+
 		super(webDriver);
 	}
 
@@ -25,11 +26,11 @@ public class AutenticacionPage extends PageObject{
 	@FindBy(id="username")
     WebElementFacade usernameField;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/div/div/div/div/div[1]/div/div[1]/div[2]/div/button")
-    WebElementFacade soyClliente;
-
     @FindBy(xpath = "//*[@id=\"loginForm\"]/div/div[2]/div[2]/div[3]/div[1]/div[5]/div/button")
     WebElementFacade botonLogin;
+
+	@FindBy(xpath = "//*[@id=\"root\"]/div/div/div/div/div/div[1]/div/div[1]/div[2]/div/button")
+	WebElementFacade soyClliente;
 
     @FindBy(id="error-msg")
 	WebElementFacade claseobejtomensje;
