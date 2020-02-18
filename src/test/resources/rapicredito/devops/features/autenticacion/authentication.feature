@@ -14,7 +14,7 @@ Feature: Autenticar un usuario
 
 	Examples:
 		|usuario |password|perfil|
-        |mariod@yopmail.com|12345|MARIO DUQUE|
+    |
 
        @escenario2
   Scenario Outline: autenticacion sin permiso de ingreso
@@ -44,3 +44,32 @@ Feature: Autenticar un usuario
     Examples:
       |ipsospechosa|
       |192.82.01.51|
+
+
+  @escenario5
+  Scenario Outline: validar ip sospechosa correcta
+    When envio la ip sospechosa
+    Then ingreso a la aplicacion <ipsospechosa>
+
+    Examples:
+      |ipsospechosa|
+      |192.82.01.51|
+
+  @escenario6
+  Scenario Outline: autenticacion sin permiso de ingreso por reintentos
+    When ingreso las credenciales <usuario> y el <password>
+    Then genera mensaje de error por reintentos
+
+    Examples:
+      |usuario |password|
+      |mateoc@yopmail.com|12345|
+
+
+  @escenario7
+  Scenario Outline: autenticacion sin permiso de solicitudes
+    When ingreso las credenciales <usuario> y el <password>
+    Then genera mensaje de error por permiso de solicitud
+
+    Examples:
+      |usuario |password|
+      |mateoc@yopmail.com|12345|

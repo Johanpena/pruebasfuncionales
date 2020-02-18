@@ -39,6 +39,7 @@ public class AuthenticationDefinition {
     public void puedo_ver_el_perfil_del_usuario(String perfil) throws Exception {
         authenticationSteps.validateRegistredIp();
     	authenticationSteps.valiationProfile(perfil);
+    	/*authenticationSteps.validarIpsospechosa();*/
     }
 
 
