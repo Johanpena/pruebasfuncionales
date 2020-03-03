@@ -13,7 +13,7 @@ public class Conexion_BD {
 
         String user = "rapicredit";
         String password = "DwhJkpkNGK";
-        String database = "rapicreditdbprod";
+        String database = "rapicreditdbnewmodel";
         int port = 3306;
         try {
             Class.forName("com.mysql.jdbc.Driver").getConstructor().newInstance();

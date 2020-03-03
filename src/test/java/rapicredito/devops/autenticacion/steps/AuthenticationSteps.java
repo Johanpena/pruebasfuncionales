@@ -9,6 +9,7 @@ import rapicredito.devops.pages.IndexPage;
 import rapicredito.devops.utilidades.Conexion_BD;
 import rapicredito.devops.utilidades.IpPublica;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -71,12 +72,11 @@ public class AuthenticationSteps {
         Connection bd = con.main();
         ResultSet resultIp = bd.createStatement().executeQuery("SELECT a.id,a.ip,b.is_tor,b.is_threat,b.is_anonymous, b.is_bogon,\n" +
                 "b.is_known_abuser,b.is_known_attacker,b.is_proxy\n" +
-                "FROM ip_data_response a \n" +
-                "INNER JOIN ip_threat b ON a.id=b.id  \n" +
-                "WHERE document=74852024 AND (b.is_anonymous=1 or b.is_bogon=1 or \n" +
+                "FROM rapicreditdbnewmodel.ip_data_response a \n" +
+                "INNER JOIN rapicreditdbnewmodel.ip_threat b ON a.id=b.id  \n" +
+                "WHERE a.id in(select max(id) from ip_data_response) and document=74852024 AND (b.is_anonymous=1 or b.is_bogon=1 or \n" +
                 "b.is_known_abuser=1 or b.is_known_attacker=1 or b.is_proxy=1 or\n" +
-                "b.is_threat=1 or b.is_tor=1)\n" +
-                "order by a.id desc;");
+                "b.is_threat=1 or b.is_tor=1);");
         if (resultIp.next()) {
             Assert.assertEquals(resultIp.getString("ip"), "Usuario sospechoso de fraude");
         } else {

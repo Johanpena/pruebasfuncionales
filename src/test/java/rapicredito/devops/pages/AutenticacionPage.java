@@ -12,7 +12,7 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
 
-@DefaultUrl("http://playrefactor.rapicredit.com/app/signUp")
+@DefaultUrl("http://client.test.rapicredit.com/login")
 public class AutenticacionPage extends PageObject{
 	
 	public  AutenticacionPage(WebDriver webDriver) {
@@ -26,7 +26,7 @@ public class AutenticacionPage extends PageObject{
 	@FindBy(id="username")
     WebElementFacade usernameField;
 
-    @FindBy(xpath = "//*[@id=\"loginForm\"]/div/div[2]/div[2]/div[3]/div[1]/div[5]/div/button")
+    @FindBy(id= "btn-login")
     WebElementFacade botonLogin;
 
 	@FindBy(xpath = "//*[@id=\"root\"]/div/div/div/div/div/div[1]/div/div[1]/div[2]/div/button")

@@ -5,16 +5,15 @@ Feature: Autenticar un usuario
 
     Background: El usuario navega en la pagina de inicio de la aplicacion
       Given me encuentro en la pagina de inicio
-    Then debo encontrar la seccion para iniciar sesion
+
 
      @escenario1
 	Scenario Outline: autenticacion exitosa
       When ingreso las credenciales <usuario> y el <password>
-      Then puedo ver el perfil del usuario <perfil>
+     Then puedo ver el perfil del usuario <perfil>
 
 	Examples:
 		|usuario |password|perfil|
-    |
 
        @escenario2
   Scenario Outline: autenticacion sin permiso de ingreso

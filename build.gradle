@@ -30,4 +30,8 @@ dependencies {
     testCompile('org.slf4j:slf4j-simple:1.7.25')
     compile("mysql:mysql-connector-java:6.0.+")
 }
+test {
+    useJUnitPlatform()
+}
     gradle.startParameter.continueOnFailure = true
+
