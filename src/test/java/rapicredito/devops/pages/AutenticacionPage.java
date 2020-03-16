@@ -32,7 +32,7 @@ public class AutenticacionPage extends PageObject{
 	@FindBy(xpath = "//*[@id=\"root\"]/div/div/div/div/div/div[1]/div/div[1]/div[2]/div/button")
 	WebElementFacade soyClliente;
 
-    @FindBy(id="error-msg")
+    @FindBy(id="swal2-content")
 	WebElementFacade claseobejtomensje;
     
     public void validateIndex() {
@@ -51,15 +51,13 @@ public class AutenticacionPage extends PageObject{
     }
 
 	public void validarHomePage() {
-
     	Assert.assertTrue(usernameField.isPresent());
 		Assert.assertTrue(passwordField.isPresent());
 	}
 
 	public void validarError(String error) {
-
-			Assert.assertEquals(claseobejtomensje.getValue(), error);
-
-
+		claseobejtomensje.waitUntilPresent();
+		Assert.assertEquals(error,claseobejtomensje.getText());
 	}
+
 }

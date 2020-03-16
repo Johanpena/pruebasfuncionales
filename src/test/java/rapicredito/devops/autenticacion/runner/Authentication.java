@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         plugin = {"pretty"},
-        features = "src/test/resources/rapicredito/devops/features/autenticacion/authentication.feature",
-        glue={"rapicredito.devops.autenticacion.definicion"},tags="@escenario1"
+        features = {"src/test/resources/rapicredito/devops/features/autenticacion/authentication.feature"},
+        glue={"rapicredito.devops.autenticacion.definicion"}
 )
 public class Authentication{
 }

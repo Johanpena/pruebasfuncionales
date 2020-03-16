@@ -67,33 +67,49 @@ public class AuthenticationSteps {
 
 
 
-    public void validateRegistredIp() throws SQLException, IOException {
+    public void validateRegistredIp(String documento) throws Exception {
         Conexion_BD con = new Conexion_BD();
         Connection bd = con.main();
-        ResultSet resultIp = bd.createStatement().executeQuery("SELECT a.id,a.ip,b.is_tor,b.is_threat,b.is_anonymous, b.is_bogon,\n" +
+        String query = "SELECT a.id,a.ip,b.is_tor,b.is_threat,b.is_anonymous, b.is_bogon,\n" +
                 "b.is_known_abuser,b.is_known_attacker,b.is_proxy\n" +
                 "FROM rapicreditdbnewmodel.ip_data_response a \n" +
                 "INNER JOIN rapicreditdbnewmodel.ip_threat b ON a.id=b.id  \n" +
-                "WHERE a.id in(select max(id) from ip_data_response) and document=74852024 AND (b.is_anonymous=1 or b.is_bogon=1 or \n" +
-                "b.is_known_abuser=1 or b.is_known_attacker=1 or b.is_proxy=1 or\n" +
-                "b.is_threat=1 or b.is_tor=1);");
+                "WHERE a.id in(select max(id) from ip_data_response) and document="+documento;
+        ResultSet resultIp = bd.createStatement().executeQuery(query);
         if (resultIp.next()) {
-            Assert.assertEquals(resultIp.getString("ip"), "Usuario sospechoso de fraude");
+            Assert.assertEquals(obtenerIp(),resultIp.getString("ip"));
         } else {
-            Assert.assertEquals(obtenerIp(),obtenerIp());
+            throw new Exception("No se registro la IP enla tabla ip_data_response");
         }
     }
 
-        public void validarIpsospechosa() throws SQLException, IOException {
+        public void validarSinIpsospechosa() throws SQLException, IOException {
             Conexion_BD con1 = new Conexion_BD();
             Connection bd1 = con1.main();
-            ResultSet resultIpsospe = bd1.createStatement().executeQuery("select * from ip_sospechosas where ip='192.168.1.8'");
+            String ipActual = IpPublica.obtenerIp();
+            ResultSet resultIpsospe = bd1.createStatement().executeQuery("SELECT * FROM rapicreditdbnewmodel.ip_sospechosas where ip='"+ipActual+"'");
             if (resultIpsospe.next()) {
-                Assert.assertEquals(resultIpsospe.getString("ip"), obtenerIp());
-            } else {
-                Assert.assertEquals(obtenerIp(), "No se econtraron registros en la BD.");
+                bd1.createStatement().executeUpdate("UPDATE rapicreditdbnewmodel.ip_sospechosas set activa=0");
             }
-
         }
+
+    public void ingresarIpsospechosa() throws IOException, SQLException {
+        Conexion_BD con1 = new Conexion_BD();
+        Connection bd1 = con1.main();
+        String ipActual = IpPublica.obtenerIp();
+        ResultSet resultIpsospe = bd1.createStatement().executeQuery("SELECT * FROM rapicreditdbnewmodel.ip_sospechosas where ip='"+ipActual+"'");
+        if (resultIpsospe.next()) {
+            if (!resultIpsospe.getString("activa").equals(1)){
+                bd1.createStatement().executeUpdate("UPDATE rapicreditdbnewmodel.ip_sospechosas set activa=1");
+            }
+        }else{
+            bd1.createStatement().executeUpdate("INSERT INTO rapicreditdbnewmodel.ip_sospechosas (ip,activa,fecha) VALUES ( '"+ipActual+"' ,1,now())");
+        }
+    }
+
+    public void validarMensajeError() {
+
+
+    }
 }
 

@@ -14,7 +14,7 @@ public class IndexPage extends PageObject{
 	}
 	
 
-	@FindBy(className = "user-Name")
+	@FindBy(xpath = "/html/body/app-root/app-header/mat-toolbar/mat-toolbar-row/div/div/div/button")
 	WebElementFacade usernameLabel;
 	
 	

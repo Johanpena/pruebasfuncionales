@@ -29,9 +29,8 @@ dependencies {
     testCompile('org.assertj:assertj-core:3.11.1')
     testCompile('org.slf4j:slf4j-simple:1.7.25')
     compile("mysql:mysql-connector-java:6.0.+")
+    testImplementation('org.junit.jupiter:junit-jupiter:5.4.0')
 }
-test {
-    useJUnitPlatform()
-}
+
     gradle.startParameter.continueOnFailure = true
 

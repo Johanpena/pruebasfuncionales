@@ -9,8 +9,10 @@ import net.thucydides.core.annotations.Steps;
 import rapicredito.devops.autenticacion.steps.AuthenticationSteps;
 import rapicredito.devops.utilidades.Conexion_BD;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class AuthenticationDefinition {
@@ -32,14 +34,14 @@ public class AuthenticationDefinition {
 
     @When("^ingreso las credenciales (.*) y el (.*)$")
     public void ingreso_las_credenciales(String user, String password) throws Exception {
+        authenticationSteps.validarSinIpsospechosa();
         authenticationSteps.login(user, password);
     }
 
-    @Then("^puedo ver el perfil del usuario (.*)$")
-    public void puedo_ver_el_perfil_del_usuario(String perfil) throws Exception {
-        authenticationSteps.validateRegistredIp();
-    	authenticationSteps.valiationProfile(perfil);
-    	/*authenticationSteps.validarIpsospechosa();*/
+    @Then("^puedo ver el perfil del usuario (.*) y la cedula queda registrada con (.*)$")
+    public void puedo_ver_el_perfil_del_usuario(String perfil, String documento) throws Exception {
+        authenticationSteps.validateRegistredIp(documento);
+        authenticationSteps.valiationProfile(perfil);
     }
 
 
@@ -48,19 +50,20 @@ public class AuthenticationDefinition {
         authenticationSteps.validarMensaje();
     }
 
-    @Then("^generar mensaje error <mensaje>(.*)$")
+
+    @Then("^generar mensaje error (.*)$")
     public void generarMensajeErrorMensaje(String error) {
         authenticationSteps.mensajeError(error);
     }
 
     @Then("^rechazar ingreso a la aplicacion (.*)$")
-    public void rechazarIngresoALaAplicacionIp(String ipsospechosa) {
-       /* authenticationSteps.validarMensaje(ipsospechosa);*/
+    public void rechazarIngresoALaAplicacionIp(String ipsospechosa) throws IOException, SQLException {
+        authenticationSteps.validarMensajeError();
     }
 
     @When("^envio la ip sospechosa$")
-    public void envioLaIpSospechosa() {
-
+    public void envioLaIpSospechosa() throws IOException, SQLException {
+        authenticationSteps.ingresarIpsospechosa();
 
     }
 }
