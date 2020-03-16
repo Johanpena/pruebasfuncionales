@@ -22,7 +22,7 @@ Feature: Autenticar un usuario
 
     Examples:
       |usuario |password|mensaje|
-      |prueba12020@yopmail.com|12345|Inicio de sesión fallido! Por favor verifica tu usuario y contraseña.|
+        |prueba12020@yopmail.com|12345|Inicio de sesión fallido! Por favor verifica tu usuario y contraseña.|
 
   @escenario4
   Scenario Outline: autenticacion fallida por filtrado de ip sospechosa
@@ -32,3 +32,13 @@ Feature: Autenticar un usuario
     Examples:
       |usuario |password|mensaje|
       |rap@yopmail.com|12345|Inicio de sesión fallido! Por favor verifica tu usuario y contraseña.|
+
+
+  @escenario2
+  Scenario Outline: autenticacion fallida por falta de permisos a la aplicacion.
+    When ingreso las credenciales <usuario> y el <password>
+    Then generar mensaje error <mensaje>
+    Examples:
+      |usuario |password|mensaje|
+      |prueba1@yopmail.com|12345|Inicio de sesión fallido! Por favor verifica tu usuario y contraseña.|
+

@@ -30,9 +30,6 @@ public class AuthenticationSteps {
 
     @Page
     IndexPage indexPage;
-   /* public Object SQLException;*/
-    private Object IOException;
-
 
     @Step
     public void openPage() {
@@ -51,17 +48,14 @@ public class AuthenticationSteps {
     }
 
     public void valiationProfile(String profile) {
-
         indexPage.validateProfile(profile);
     }
 
     public void validarMensaje() {
-
         autenticacionPage.validarHomePage();
     }
 
     public void mensajeError(String error) {
-
         autenticacionPage.validarError(error);
     }
 
@@ -83,15 +77,15 @@ public class AuthenticationSteps {
         }
     }
 
-        public void validarSinIpsospechosa() throws SQLException, IOException {
-            Conexion_BD con1 = new Conexion_BD();
-            Connection bd1 = con1.main();
-            String ipActual = IpPublica.obtenerIp();
-            ResultSet resultIpsospe = bd1.createStatement().executeQuery("SELECT * FROM rapicreditdbnewmodel.ip_sospechosas where ip='"+ipActual+"'");
-            if (resultIpsospe.next()) {
-                bd1.createStatement().executeUpdate("UPDATE rapicreditdbnewmodel.ip_sospechosas set activa=0");
-            }
+    public void validarSinIpsospechosa() throws SQLException, IOException {
+        Conexion_BD con1 = new Conexion_BD();
+        Connection bd1 = con1.main();
+        String ipActual = IpPublica.obtenerIp();
+        ResultSet resultIpsospe = bd1.createStatement().executeQuery("SELECT * FROM rapicreditdbnewmodel.ip_sospechosas where ip='"+ipActual+"'");
+        if (resultIpsospe.next()) {
+            bd1.createStatement().executeUpdate("UPDATE rapicreditdbnewmodel.ip_sospechosas set activa=0");
         }
+    }
 
     public void ingresarIpsospechosa() throws IOException, SQLException {
         Conexion_BD con1 = new Conexion_BD();
@@ -107,9 +101,5 @@ public class AuthenticationSteps {
         }
     }
 
-    public void validarMensajeError() {
-
-
-    }
 }
 

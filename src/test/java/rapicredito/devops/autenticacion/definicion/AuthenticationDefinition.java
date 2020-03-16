@@ -1,17 +1,13 @@
 package rapicredito.devops.autenticacion.definicion;
 
 
-import com.mysql.cj.api.mysqla.result.Resultset;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Steps;
 import rapicredito.devops.autenticacion.steps.AuthenticationSteps;
-import rapicredito.devops.utilidades.Conexion_BD;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -19,8 +15,7 @@ public class AuthenticationDefinition {
 
 	@Steps
     AuthenticationSteps authenticationSteps;
-    private int anInt;
-    private int row;
+
 
     @Given("^me encuentro en la pagina de inicio$")
     public void me_encuentro_en_la_pagina_de_inicio() throws Exception {
@@ -57,8 +52,8 @@ public class AuthenticationDefinition {
     }
 
     @Then("^rechazar ingreso a la aplicacion (.*)$")
-    public void rechazarIngresoALaAplicacionIp(String ipsospechosa) throws IOException, SQLException {
-        authenticationSteps.validarMensajeError();
+    public void rechazarIngresoALaAplicacionIp(String error) throws IOException, SQLException {
+        authenticationSteps.mensajeError(error);
     }
 
     @When("^envio la ip sospechosa$")
